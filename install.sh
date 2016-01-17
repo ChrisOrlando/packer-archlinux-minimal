@@ -33,8 +33,11 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 # set root password
 echo "root:root" | arch-chroot /mnt chpasswd
 
-# enabled ssh service
+# enable ssh service
 arch-chroot /mnt systemctl enable sshd.service
+
+# enable dhcp service
+arch-chroot /mnt systemctl enable dhcpcd.service
 
 # unmount /mnt
 umount -R /mnt
