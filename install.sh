@@ -38,3 +38,6 @@ arch-chroot /mnt systemctl enable sshd.service
 
 # unmount /mnt
 umount -R /mnt
+
+# reboot
+systemctl reboot
