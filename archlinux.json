@@ -8,7 +8,11 @@
         "iso_checksum_type": "md5",
         "ssh_username": "root",
         "ssh_password": "root",
-        "boot_command": "",
+        "ssh_timeout": "1000000s",
+        "boot_command":["<enter><wait10><wait10><wait10>",
+                        "/usr/bin/curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh",
+                        "| bash<enter>"],
+        "http_directory": ".",
         "shutdown_command": "shutdown now"
     }
     ]
