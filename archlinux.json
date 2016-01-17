@@ -1,0 +1,15 @@
+{
+    "builders": [
+    {
+        "type": "virtualbox-iso",
+        "guest_os_type": "ArchLinux_64",
+        "iso_url": "http://mirror.nexcess.net/archlinux/iso/2016.01.01/archlinux-2016.01.01-dual.iso",
+        "iso_checksum": "8e10e611a1833b98c74d5eb96b7007eb",
+        "iso_checksum_type": "md5",
+        "ssh_username": "root",
+        "ssh_password": "root",
+        "boot_command": "",
+        "shutdown_command": "shutdown now"
+    }
+    ]
+}
