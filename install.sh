@@ -36,6 +36,9 @@ echo "root:root" | arch-chroot /mnt chpasswd
 # enable ssh service
 arch-chroot /mnt systemctl enable sshd.service
 
+# allow root login over ssh
+arch-chroot /mnt bash -c 'echo "PermitRootLogin yes" >> /etc/ssh/sshd_config'
+                     
 # enable dhcp service
 arch-chroot /mnt systemctl enable dhcpcd.service
 
