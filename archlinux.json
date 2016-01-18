@@ -16,6 +16,12 @@
             "shutdown_command": "shutdown now"
         }
     ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "provision.sh"
+        }
+    ],
     "post-processors": [
         {
             "type": "vagrant",
