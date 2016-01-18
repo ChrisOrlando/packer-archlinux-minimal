@@ -31,7 +31,7 @@ arch-chroot /mnt grub-install --target=i386-pc --recheck /dev/sda
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 # set root password
-echo "root:root" | arch-chroot /mnt chpasswd
+echo "root:vagrant" | arch-chroot /mnt chpasswd
 
 # enable ssh service
 arch-chroot /mnt systemctl enable sshd.service

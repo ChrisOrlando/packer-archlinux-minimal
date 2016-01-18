@@ -7,7 +7,7 @@
             "iso_checksum": "8e10e611a1833b98c74d5eb96b7007eb",
             "iso_checksum_type": "md5",
             "ssh_username": "root",
-            "ssh_password": "root",
+            "ssh_password": "vagrant",
             "ssh_timeout": "1000000s",
             "boot_command":["<enter><wait10><wait10><wait10>",
                             "/usr/bin/curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh",
