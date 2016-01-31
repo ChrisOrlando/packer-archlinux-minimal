@@ -29,3 +29,9 @@ pacman -S sudo --noconfirm
 
 # add vagrant user to sudoers list
 echo "vagrant ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
+
+# install virtualbox guest additions
+pacman -S virtualbox-guest-utils --noconfirm
+
+# load virtualbox guest addition modules
+printf "vboxguest\nvboxsf\nvboxvideo\n" > /etc/modules-load.d/virtualbox.conf
