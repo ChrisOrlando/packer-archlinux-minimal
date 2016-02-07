@@ -13,7 +13,8 @@
                             "/usr/bin/curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh",
                             "| bash<enter>"],
             "http_directory": ".",
-            "shutdown_command": "shutdown now"
+            "shutdown_command": "shutdown now",
+            "guest_additions_mode": "disable"
         }
     ],
     "provisioners": [
