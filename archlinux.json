@@ -3,8 +3,8 @@
         {
             "type": "virtualbox-iso",
             "guest_os_type": "ArchLinux_64",
-            "iso_url": "http://mirror.nexcess.net/archlinux/iso/2016.11.01/archlinux-2016.11.01-dual.iso",
-            "iso_checksum": "47672450bcda8acf0c8512bd5b543cc0",
+            "iso_url": "http://mirror.nexcess.net/archlinux/iso/2016.12.01/archlinux-2016.12.01-dual.iso",
+            "iso_checksum": "3701e0d4009009fa965e546c6c0c643f",
             "iso_checksum_type": "md5",
             "ssh_username": "root",
             "ssh_password": "vagrant",
