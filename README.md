@@ -8,7 +8,7 @@ Features
 
 I had simplicity in mind when creating this box. It has the following features.
 - 64-bit
-- Up to date as of August 1st, 2017
+- Up to date as of September 1st, 2017
 - All space on / partition
 - No Swap
 - Includes base and base-devel package groups
