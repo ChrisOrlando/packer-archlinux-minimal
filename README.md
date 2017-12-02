@@ -7,7 +7,6 @@ Features
 --------
 
 I had simplicity in mind when creating this box. It has the following features.
-- 64-bit
 - Always up to date
 - All space on / partition
 - No Swap
