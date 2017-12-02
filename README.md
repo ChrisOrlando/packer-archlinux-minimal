@@ -8,7 +8,7 @@ Features
 
 I had simplicity in mind when creating this box. It has the following features.
 - 64-bit
-- Up to date as of September 1st, 2017
+- Always up to date
 - All space on / partition
 - No Swap
 - Includes base and base-devel package groups
@@ -20,7 +20,7 @@ Build instructions
 ~~~
 $ git clone git@github.com:ChrisOrlando/packer-archlinux-minimal.git
 $ cd packer-archlinux-minimal
-$ packer build archlinux.json
+$ ./build.sh
 ~~~
 
 Resources used to create this
