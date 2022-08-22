@@ -1,32 +1,34 @@
 {
-    "builders": [
-        {
-            "type": "virtualbox-iso",
-            "guest_os_type": "ArchLinux_64",
-            "iso_url": "{{iso_url}}",
-            "iso_checksum": "{{iso_md5}}",
-            "iso_checksum_type": "md5",
-            "ssh_username": "root",
-            "ssh_password": "vagrant",
-            "ssh_timeout": "1000000s",
-            "boot_command":["<enter><wait10><wait10><wait10>",
-                            "/usr/bin/curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh",
-                            "| bash<enter>"],
-            "http_directory": ".",
-            "shutdown_command": "shutdown now",
-            "guest_additions_mode": "disable"
-        }
-    ],
-    "provisioners": [
-        {
-            "type": "shell",
-            "script": "provision.sh"
-        }
-    ],
-    "post-processors": [
-        {
-            "type": "vagrant",
-            "output": "archlinux.box"
-        }
-    ]
+  "builders": [
+    {
+      "boot_command": [
+        "<enter><wait10><wait10><wait10>",
+        "/usr/bin/curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh",
+        "| bash<enter>"
+      ],
+      "guest_additions_mode": "disable",
+      "guest_os_type": "ArchLinux_64",
+      "http_directory": ".",
+      "iso_checksum": "md5:{{iso_md5}}",
+      "iso_url": "{{iso_url}}",
+      "shutdown_command": "shutdown now",
+      "ssh_password": "vagrant",
+      "ssh_timeout": "1000000s",
+      "ssh_username": "root",
+      "type": "virtualbox-iso"
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "archlinux.box",
+      "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "script": "provision.sh",
+      "type": "shell"
+    }
+  ]
 }
+
