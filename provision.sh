@@ -13,8 +13,8 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr+kz4
 chmod 600 /home/vagrant/.ssh/authorized_keys
 chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
 
-# install sudo and base-devel
-pacman -Syu --noconfirm --needed sudo base-devel
+# install sudo
+pacman -Syu --noconfirm --needed sudo
 
 # add vagrant user to sudoers list
 echo "vagrant ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/vagrant
@@ -35,5 +35,15 @@ esac
 # disable root ssh login now that the vagrant user exists
 rm -f /etc/ssh/sshd_config.d/10-root-login.conf
 
-# clean package cache to shrink the box
+# give each VM made from the box its own machine-id (also used for its DHCP
+# client id) and SSH host keys; both are regenerated on first boot
+truncate -s 0 /etc/machine-id
+rm -f /etc/ssh/ssh_host_*
+
+# drop the package cache and build-time logs
 rm -f /var/cache/pacman/pkg/*
+journalctl --rotate --quiet
+journalctl --vacuum-time=1s --quiet
+
+# discard freed blocks so the disk image can be compacted
+fstrim -v /

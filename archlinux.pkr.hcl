@@ -41,10 +41,13 @@ source "virtualbox-iso" "archlinux" {
   guest_additions_mode = "disable"
   firmware             = "bios"
   hard_drive_interface = "sata"
-  disk_size            = 20480
-  cpus                 = 2
-  memory               = 2048
-  headless             = true
+  # pass guest TRIM through so freed blocks shrink the disk image
+  hard_drive_discard       = true
+  hard_drive_nonrotational = true
+  disk_size                = 20480
+  cpus                     = 2
+  memory                   = 2048
+  headless                 = true
 
   http_directory = "."
   boot_wait      = "5s"
@@ -71,12 +74,15 @@ source "qemu" "archlinux" {
   machine_type   = "q35"
   accelerator    = var.qemu_accelerator
   disk_interface = "virtio"
-  net_device     = "virtio-net"
-  format         = "qcow2"
-  disk_size      = "20G"
-  cpus           = 2
-  memory         = 2048
-  headless       = true
+  # pass guest TRIM through so freed blocks are dropped when packer compacts the image
+  disk_discard       = "unmap"
+  disk_detect_zeroes = "unmap"
+  net_device         = "virtio-net"
+  format             = "qcow2"
+  disk_size          = "20G"
+  cpus               = 2
+  memory             = 2048
+  headless           = true
 
   http_directory = "."
   boot_wait      = "5s"

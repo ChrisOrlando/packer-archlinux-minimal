@@ -8,13 +8,8 @@ PARTITION="${DISK}1"
 # wait for the live ISO to finish initializing the pacman keyring
 until systemctl is-active --quiet pacman-init.service; do sleep 1; done
 
-parted -s "$DISK" mklabel msdos
-
-# create primary partition with optimal alignment
-parted -s -a optimal "$DISK" mkpart primary ext4 0% 100%
-
-# make partition bootable
-parted -s "$DISK" set 1 boot on
+# one bootable linux partition spanning the whole disk (MBR)
+echo 'type=83, bootable' | sfdisk -q --label dos "$DISK"
 
 # format partition ext4
 mkfs.ext4 -F "$PARTITION"
@@ -22,8 +17,15 @@ mkfs.ext4 -F "$PARTITION"
 # mount partition
 mount "$PARTITION" /mnt
 
+# skip docs, man pages and translations; the box has no man-db to read them
+# anyway. applied to the live ISO for pacstrap and to the target for later
+# installs and upgrades.
+NOEXTRACT='NoExtract = usr/share/doc/* usr/share/man/* usr/share/info/* usr/share/gtk-doc/* usr/share/help/* usr/share/locale/* !usr/share/locale/locale.alias'
+sed -i "/^\[options\]/a ${NOEXTRACT}" /etc/pacman.conf
+
 # install arch (the base group no longer includes a kernel)
 pacstrap -K /mnt base linux grub openssh
+sed -i "/^\[options\]/a ${NOEXTRACT}" /mnt/etc/pacman.conf
 
 # generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab

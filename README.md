@@ -10,7 +10,8 @@ I had simplicity in mind when creating this box. It has the following features.
 - Always up to date
 - All space on / partition
 - No Swap
-- Includes base and base-devel
+- Only the base package group, a kernel, GRUB, OpenSSH and sudo; install base-devel yourself if you need it
+- No docs, man pages or translations (configured via `NoExtract` in `/etc/pacman.conf`)
 - OpenSSH installed and running
 - VirtualBox Guest Additions (virtualbox box) or QEMU guest agent (libvirt box) installed
 
